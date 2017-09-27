@@ -41,7 +41,7 @@ void threadTestTwo(){
     listener.send(msg);
     for(;;){ // infinite loop to wait for messages
         listener.send(msg); // will send a message every second
-        // tell teh thread to sleep for 1 secondd
+        // tell the thread to sleep for 1 second
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }

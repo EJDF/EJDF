@@ -45,10 +45,19 @@ namespace Engine{
       Class for passing messages and communicating
     */
     class MessageBus{
+        
         std::queue<Message> msgQueue;
         std::vector<Listener*> listeners;
 
     public:
+        void logMessage(std::string msg);
+        void logNote(std::string msg);
+        void logWarning(std::string msg);
+        void logError(std::string msg);
+        void logFatalError(std::string msg);
+        
+        void getConsoleInput(); // get msg from user via console
+        
         void send(Message message); // push given message onto the message queue
         void addListener(Listener *listener);
         void notify(); // notify listeners 
