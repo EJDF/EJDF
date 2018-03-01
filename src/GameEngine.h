@@ -18,6 +18,7 @@ namespace Engine{
         GameEngine();
         int initWindow();
         void update();
+        void mainLoop();
         inline void resetWindow();
         SDL_Window *getWindow();
         SDL_Surface *getSurface();

@@ -1,5 +1,10 @@
 #include "Log.h"
 #include "GameEngine.h"
+#include "Input.h"
+#include "Event.h"
+
+// maximum number of frames per second
+#define MAX_FRAMES 60
 
 // init the game engine
 Engine::GameEngine::GameEngine(){
@@ -8,7 +13,7 @@ Engine::GameEngine::GameEngine(){
 
     this->resetWindow();
 
-    
+    this->mainLoop();
 }
 
 // initialize the SDL window
@@ -37,6 +42,38 @@ int Engine::GameEngine::initWindow(){
 // update the current state along with the SDL window.
 void Engine::GameEngine::update(){
     SDL_UpdateWindowSurface(this->window);
+}
+
+void Engine::GameEngine::mainLoop(){
+    int initTick; // first tick
+    SDL_Event event; // SDL event used for polling events
+    bool quit = false; // condition to exit the main loop
+
+    Engine::InputHandler inputHandler; // controls input
+
+    while(!quit){
+        initTick = SDL_GetTicks(); // set the start time for the loop iteration
+        this->resetWindow(); // clear the screen
+
+        this->update(); // update the state and the window
+        
+        while(SDL_PollEvent(&event)){ // get SDL events
+            if(!eventHandler(event, &inputHandler)){
+                quit = true;
+                break;
+            }
+        }
+
+        // TODO: entity handling updates
+
+        // frame limiting
+        // change in time since start of current loop
+        int deltaTime = (SDL_GetTicks() - initTick); 
+        if((1000 / MAX_FRAMES) > deltaTime){
+            SDL_Delay((1000 / MAX_FRAMES) - deltaTime); // limit FPS to MAX_FRAMES
+        }
+        
+    }
 }
 
 // reset the window to white
