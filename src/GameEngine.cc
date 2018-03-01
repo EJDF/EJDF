@@ -3,21 +3,32 @@
 #include "Input.h"
 #include "Event.h"
 
+// for demo mode, load the demo state.
+#include "DemoState.h"
+
 // maximum number of frames per second
 #define MAX_FRAMES 60
 
 // init the game engine
 Engine::GameEngine::GameEngine(){
     // create the window
-    this->initWindow();
+    this->window.initWindow();
 
-    this->resetWindow();
+    this->window.resetWindow();
 
+    this->currentState = new Demo();
+    
     this->mainLoop();
 }
 
+// free all the stuff allocated
+Engine::GameEngine::~GameEngine(){
+    // TOOD: dealloc gamestate
+    //delete this->currentState;
+}
+
 // initialize the SDL window
-int Engine::GameEngine::initWindow(){
+int Engine::Window::initWindow(){
     // initialize the SDL variables to NULL because it's a C library.
     this->window = NULL;
     this->surface = NULL;
@@ -41,7 +52,8 @@ int Engine::GameEngine::initWindow(){
 
 // update the current state along with the SDL window.
 void Engine::GameEngine::update(){
-    SDL_UpdateWindowSurface(this->window);
+    SDL_UpdateWindowSurface(this->window.getWindow());
+    this->currentState->update(this->window);
 }
 
 void Engine::GameEngine::mainLoop(){
@@ -53,7 +65,7 @@ void Engine::GameEngine::mainLoop(){
 
     while(!quit){
         initTick = SDL_GetTicks(); // set the start time for the loop iteration
-        this->resetWindow(); // clear the screen
+        this->window.resetWindow(); // clear the screen
 
         this->update(); // update the state and the window
         
@@ -77,19 +89,24 @@ void Engine::GameEngine::mainLoop(){
 }
 
 // reset the window to white
-inline void Engine::GameEngine::resetWindow(){
+inline void Engine::Window::resetWindow(){
     SDL_FillRect(this->surface, NULL,
                  SDL_MapRGB(this->surface->format, 255, 255, 255));
 
 }
 
+// change the current game state
+inline void Engine::GameEngine::changeState(Engine::GameState *newState){
+    this->currentState = newState;
+}
+
 /*
   Getters for the low-level SDL parts of the engine.
 */
-SDL_Window *Engine::GameEngine::getWindow(){
+SDL_Window *Engine::Window::getWindow(){
     return this->window;
 }
 
-SDL_Surface *Engine::GameEngine::getSurface(){
+SDL_Surface *Engine::Window::getSurface(){
     return this->surface;
 }

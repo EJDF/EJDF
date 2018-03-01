@@ -38,6 +38,10 @@ Engine::Sprite::Sprite(int x, int y, int w, int h, std::string filename)
     
 }
 
+void Engine::Sprite::draw(SDL_Surface *dest){
+    SDL_BlitSurface(this->surface, &this->rect, dest, &destRect);
+}
+
 Engine::Vec2 Engine::Sprite::getPos(){
     return this->pos;
 }
