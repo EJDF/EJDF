@@ -8,6 +8,7 @@ int main(int argc, char **argv){
     if(SDL_INIT_EVERYTHING < 0)
         Engine::Log::fatalError("Could not start SDL");
 
+    
     // create the engine (so many namespaces)
     Engine::GameEngine::GameEngine engine = Engine::GameEngine::GameEngine();
     
