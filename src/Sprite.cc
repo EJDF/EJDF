@@ -1,4 +1,5 @@
 #include "Sprite.h"
+#include "Log.h"
 
 Engine::Sprite::Sprite(int x, int y, int w, int h, std::string filename)
     : pos(x, y){

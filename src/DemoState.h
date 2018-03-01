@@ -2,6 +2,7 @@
 #include "GameEngine.h"
 #include "GameState.h"
 #include "EntityHandler.h"
+#include "Log.h"
 
 class Demo : public Engine::GameState{
     Engine::EntityHandler entities;
@@ -14,7 +15,10 @@ class Demo : public Engine::GameState{
         entities.add(Engine::Sprite(10,10,50,50, "../res/test.bmp"));
     }
 
-    void update(Engine::Window window){
+    void update(Engine::Window window, Engine::InputHandler inputHandler){
         entities.updateEntities();
+        if(inputHandler.left){
+            Engine::Log::note("fff");
+        }
     }
 };

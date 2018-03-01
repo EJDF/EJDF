@@ -1,6 +1,5 @@
 #include "Log.h"
 #include "GameEngine.h"
-#include "Input.h"
 #include "Event.h"
 
 // for demo mode, load the demo state.
@@ -13,10 +12,12 @@
 Engine::GameEngine::GameEngine(){
     // create the window
     this->window.initWindow();
-
+    
     this->window.resetWindow();
 
     this->currentState = new Demo();
+
+    this->currentState->init(this->window);
     
     this->mainLoop();
 }
@@ -51,9 +52,10 @@ int Engine::Window::initWindow(){
 }
 
 // update the current state along with the SDL window.
-void Engine::GameEngine::update(){
+void Engine::GameEngine::update(Engine::InputHandler inputHandler){
+    this->currentState->update(this->window, inputHandler);
     SDL_UpdateWindowSurface(this->window.getWindow());
-    this->currentState->update(this->window);
+
 }
 
 void Engine::GameEngine::mainLoop(){
@@ -66,8 +68,8 @@ void Engine::GameEngine::mainLoop(){
     while(!quit){
         initTick = SDL_GetTicks(); // set the start time for the loop iteration
         this->window.resetWindow(); // clear the screen
-
-        this->update(); // update the state and the window
+        
+        this->update(inputHandler); // update the state and the window
         
         while(SDL_PollEvent(&event)){ // get SDL events
             if(!eventHandler(event, &inputHandler)){
@@ -75,7 +77,7 @@ void Engine::GameEngine::mainLoop(){
                 break;
             }
         }
-
+        
         // TODO: entity handling updates
 
         // frame limiting

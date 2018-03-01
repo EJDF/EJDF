@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include "Log.h"
 #include "GameState.h"
+#include "Input.h"
 
 namespace Engine{
 
@@ -35,7 +36,7 @@ namespace Engine{
         GameEngine();
         ~GameEngine();
         int initWindow();
-        void update();
+        void update(Engine::InputHandler inputHandler);
         void mainLoop();
         inline void changeState(GameState *newState);
     };
