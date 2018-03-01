@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 /*
   Console logging functions for various levels of importance
 */
