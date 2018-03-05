@@ -1,5 +1,7 @@
 #pragma once
+#include "HitagiFile.h"
 #include "GameState.h"
+
 
 namespace Engine{
 
@@ -9,6 +11,7 @@ namespace Engine{
      */
     class Scene{
         GameState state;
-        // TODO: create a state with file i/o etc.
+        // the loaded file with the scene blob
+        std::vector<unsigned char> hitagiFile;
     };
 }
