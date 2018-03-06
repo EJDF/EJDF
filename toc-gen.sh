@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # this will generate a table-of-contents file for the given directory it's run in
 # I have it added to my $PATH so that I can run it arbitrarily for testing
 
