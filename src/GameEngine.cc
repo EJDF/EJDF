@@ -1,9 +1,8 @@
 #include "Log.h"
 #include "GameEngine.h"
 #include "Event.h"
+#include "GameState.h"
 
-// for demo mode, load the demo state.
-#include "DemoState.h"
 
 // maximum number of frames per second
 #define MAX_FRAMES 60
@@ -15,7 +14,7 @@ Engine::GameEngine::GameEngine(){
     
     this->window.resetWindow();
 
-    this->currentState = new Demo();
+    this->currentState = new Engine::GameState();
 
     this->currentState->init(this->window);
     

@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <stdint.h>
 
 namespace Engine{
     /*
@@ -11,16 +12,16 @@ namespace Engine{
       contains the raw data and some helper functions to process
       the data inside of the class.
 
-      HitagiFiles exist as a blob file containing all the scripts
-      and bitmaps of the game. It starts with a header that simply
-      reads hitagi-engine followed by 0x0A indicating a newline.
-      From there headers with the name of the file followed by
-      <-EOF-> separate the files.
+      Hitagi files start with a 6-byte header: 48 69 74 67 61 69 (Hitagi)
+      
+
      */
     class HitagiFile{
         
         // the container of the file
         std::vector<unsigned char> file;
+        // file signature
+        uint32_t signature;
 
     public:
         HitagiFile(std::string filename);

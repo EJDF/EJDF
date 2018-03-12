@@ -1,16 +1,17 @@
 #pragma once
-#include "GameEngine.h"
 #include "Input.h"
+#include "Scene.h"
 
 namespace Engine{
     class Window;
     /*
       GameState
-      polymorphic class from which all gamestates are derived
+      Maintains the state of a given scene
      */
     class GameState{
+        Scene scene;
     public:
-        virtual void init(Window window) = 0;
-        virtual void update(Window window, InputHandler inputHandler) = 0;
+        void init(Window window);
+        void update(Window window, InputHandler inputHandler);
     };
 }
