@@ -1,6 +1,5 @@
 #pragma once
 #include "HitagiFile.h"
-#include "GameState.h"
 #include "LuaVM.h"
 
 namespace Engine{

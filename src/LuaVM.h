@@ -23,6 +23,9 @@ namespace Engine{
     public:
         VM();
         void addFunction(std::string name, lua_CFunction func);
-        
+        void loadScript(std::string name);
+        int getTop();
+        void pushNum(int number);
+        int toNumber(int index);
     };
 }
