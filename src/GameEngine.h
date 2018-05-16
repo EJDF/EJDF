@@ -1,11 +1,11 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "Log.h"
-#include "GameState.h"
 #include "Input.h"
 
 namespace Engine{
-
+    class StateHandler;
+    
     /*
       Window
       Maintains the SDL window stuff
@@ -30,7 +30,7 @@ namespace Engine{
      */
     class GameEngine{
         Window window;
-        GameState *currentState;
+        StateHandler *handler;
         
     public:
         GameEngine();
@@ -38,6 +38,5 @@ namespace Engine{
         int initWindow();
         void update(Engine::InputHandler inputHandler);
         void mainLoop();
-        inline void changeState(GameState *newState);
     };
 }

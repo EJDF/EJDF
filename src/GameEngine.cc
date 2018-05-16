@@ -1,8 +1,7 @@
 #include "Log.h"
 #include "GameEngine.h"
 #include "Event.h"
-#include "GameState.h"
-
+#include "StateHandler.h"
 
 // maximum number of frames per second
 #define MAX_FRAMES 60
@@ -14,9 +13,9 @@ Engine::GameEngine::GameEngine(){
     
     this->window.resetWindow();
 
-    this->currentState = new Engine::GameState();
-
-    this->currentState->init(this->window);
+    // add a state handler
+    this->handler = new Engine::StateHandler();
+    this->handler->init(&(this->window));
     
     this->mainLoop();
 }
@@ -52,7 +51,7 @@ int Engine::Window::initWindow(){
 
 // update the current state along with the SDL window.
 void Engine::GameEngine::update(Engine::InputHandler inputHandler){
-    this->currentState->update(this->window, inputHandler);
+    this->handler->update(inputHandler);
     SDL_UpdateWindowSurface(this->window.getWindow());
 
 }
@@ -61,9 +60,9 @@ void Engine::GameEngine::mainLoop(){
     int initTick; // first tick
     SDL_Event event; // SDL event used for polling events
     bool quit = false; // condition to exit the main loop
-
+    
     Engine::InputHandler inputHandler; // controls input
-
+    
     while(!quit){
         initTick = SDL_GetTicks(); // set the start time for the loop iteration
         this->window.resetWindow(); // clear the screen
@@ -96,10 +95,6 @@ inline void Engine::Window::resetWindow(){
 
 }
 
-// change the current game state
-inline void Engine::GameEngine::changeState(Engine::GameState *newState){
-    this->currentState = newState;
-}
 
 /*
   Getters for the low-level SDL parts of the engine.
