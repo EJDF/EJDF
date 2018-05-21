@@ -14,11 +14,11 @@ namespace Engine{
      */
     class StateHandler{
         Window *window;
-        std::vector<State> states;
-        State curState;
+        std::vector<State *> states;
+        int curState;
     public:
         void init(Window *window);
-        void addState(State curState);
+        void addState(State *newState);
         void changeState(unsigned int index);
         void update(InputHandler inputHandler);
     };
