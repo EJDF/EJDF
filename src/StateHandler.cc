@@ -2,7 +2,7 @@
 #include <string>
 #include "GameEngine.h"
 #include "StateHandler.h"
-#include "TestScene.h"
+#include "scenes/TestScene.h"
 
 void Engine::StateHandler::init(Engine::Window *window){
     this->window = window;
