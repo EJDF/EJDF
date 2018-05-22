@@ -4,6 +4,7 @@
 /*
   Vec2
   A 2-dimensional vector structure with support for standard c++ operators.
+  supports +, -, *.
 */
 namespace Engine{
     struct Vec2{
@@ -27,6 +28,11 @@ namespace Engine{
         // scalar multiplication for vector
         Vec2 operator*(int scalar){
             return Vec2(this->x * scalar, this->y * scalar);
+        }
+
+        // multiply two vectors together
+        Vec2 operator*(Vec2 v2){
+            return Vec2(this->x * v2.x, this->y * v2.y);
         }
 
         // calculate the dot product of two vectors
