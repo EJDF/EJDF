@@ -1,15 +1,16 @@
 CC=g++
-outdir=bin/ejdf
+binlocation=bin/ejdf
 
 all:
 	mkdir -p bin/
 clean:
-	rm $(outdir)
-
-
+	rm -f $(binlocation)
 mac:
-	$(CC) src/*.cc src/scenes/*.cc -o $(outdir) -std=c++1y -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa -llua
+	make all clean
+	$(CC) src/*.cc src/scenes/*.cc -o $(binlocation) -std=c++1y -I/Library/Frameworks/SDL2.framework/Headers -framework SDL2 -framework Cocoa -llua
 linux:
-	$(CC) src/*.cc src/scenes/*.cc -o $(outdir) -std=c++1y -lSDL
+	make all clean
+	$(CC) src/*.cc src/scenes/*.cc -o $(binlocation) -std=c++1y -lSDL
 win:
-	$(CC) src/*.cc src/scenes/*.cc -o $(outdir) -std=c++1y -lSDL
+	make all clean
+	$(CC) src/*.cc src/scenes/*.cc -o $(binlocation) -std=c++1y -lSDL

@@ -8,8 +8,7 @@ namespace Engine{
       Sprite
       This is the low-level abstraction over SDL rectangles.
       It is a wrapper around SDL functions providing a somewhat higher level
-      version. This is not to be used in game code, instead the higher level classeses
-      should be used in order to draw to the screen.
+      version. 
     */
     class Sprite{
         SDL_Surface *surface;

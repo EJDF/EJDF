@@ -1,5 +1,6 @@
 #pragma once
-#include "GameEngine.h"
+#include <vector>
+#include "GameObject.h"
 
 namespace Engine{
     /*
@@ -18,6 +19,8 @@ namespace Engine{
       abstract class to manage the sprites or other game objects.
     */
     class State{
+        // the objects in the current scene.
+        std::vector<GameObject *> objs;
     public:
         // abstract state updater.
         // this is the only function required for each state.
