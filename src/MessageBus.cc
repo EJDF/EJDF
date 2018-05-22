@@ -1,9 +1,7 @@
 #include "MessageBus.h"
 #include "Log.h"
 
-/*
-  Message
-*/
+/* Message */
 Engine::Message::Message(std::string event){
     this->event = event;
 }
@@ -12,12 +10,9 @@ std::string Engine::Message::getEvent(){
     return this->event;
 }
 
-/*
-  MessageBus
-*/
-
+/* MessageBus */
 void Engine::MessageBus::send(Engine::Message message){
-    msgQueue.push(message);
+    messageQueue.push(message);
 }
 
 void Engine::MessageBus::addListener(Engine::Listener *listener){
@@ -26,18 +21,19 @@ void Engine::MessageBus::addListener(Engine::Listener *listener){
 
 // all listeners are notified (including the sender)
 void Engine::MessageBus::notify(){
-    while(!msgQueue.empty()){ // ensure there are messages
-        Engine::Log::message(msgQueue.front().getEvent());
+    while(!messageQueue.empty()){ // ensure there are messages
+        Engine::Log::message(messageQueue.front().getEvent());
         for(Engine::Listener *listener : listeners){
-            listener->receive(msgQueue.front());
+            listener->receive(messageQueue.front());
         }
-        msgQueue.pop();
+        messageQueue.pop();
     }
 }
 
-/*
-  Listener
-*/
+/* 
+   Listener 
+   Default implementation
+ */
 
 Engine::Listener::Listener(MessageBus *bus){
     this->bus = bus;
@@ -51,17 +47,3 @@ void Engine::Listener::send(Message message){
 void Engine::Listener::update(){ }
 
 void Engine::Listener::receive(Message message){ }
-
-
-/*
-  Console
-*/
-
-void Engine::MessageBus::getConsoleInput(){
-    std::string input;
-    std::cout << "> ";
-    std::cin >> input;
-
-    Engine::Message msg(input);
-    this->send(msg);
-}

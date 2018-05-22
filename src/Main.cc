@@ -10,6 +10,7 @@ int main(int argc, char **argv){
 
     
     // create the engine (so many namespaces)
+    // this is the initial point of the game.
     Engine::GameEngine::GameEngine engine = Engine::GameEngine::GameEngine();
 
     return 0;

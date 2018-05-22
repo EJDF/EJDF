@@ -2,7 +2,7 @@ CC=g++
 outdir=bin/ejdf
 
 all:
-	mkdir bin/
+	mkdir -p bin/
 clean:
 	rm $(outdir)
 

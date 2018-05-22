@@ -8,6 +8,7 @@ namespace Engine{
     /*
       HitagiFile
       This class handles the loading of the scene files.
+
       Specifically, it does not handle the parsing, it simply 
       contains the raw data and some helper functions to process
       the data inside of the class.

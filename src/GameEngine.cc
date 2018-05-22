@@ -76,8 +76,6 @@ void Engine::GameEngine::mainLoop(){
             }
         }
         
-        // TODO: entity handling updates
-
         // frame limiting
         // change in time since start of current loop
         int deltaTime = (SDL_GetTicks() - initTick); 
