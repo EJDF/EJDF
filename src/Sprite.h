@@ -8,7 +8,14 @@ namespace Engine{
       Sprite
       This is the low-level abstraction over SDL rectangles.
       It is a wrapper around SDL functions providing a somewhat higher level
-      version. 
+      version.
+      
+      Sprite's use should be avoided in-game. Instead, a higher level abstraction
+      like GameObject's derivatives.
+
+      Sprite images should be a linear list of frames (spritesheet).
+      They should be ordered as:
+      FRAME: 0 1 2 3 4 5 ... n. They should all be on the same line.
     */
     class Sprite{
         SDL_Surface *surface;
@@ -25,5 +32,6 @@ namespace Engine{
         void draw(SDL_Surface *dest);
         void despawn();
         void animate(int deltaX, int deltaY);
+        void playAnimation(unsigned int length, unsigned int startFrame);
     };
 }

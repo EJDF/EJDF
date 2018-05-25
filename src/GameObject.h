@@ -20,11 +20,15 @@ namespace Engine{
      */
     class GameObject{
         Sprite sprite;
+        Window *window;
     public:
         const unsigned int id; /* independent ID for current scene.
                                   This ID is incremented for each GameObject added to a scene.*/
-        GameObject(std::string spriteFilename, unsigned int id, Vec2 startPos);
+        GameObject(Window *window, std::string spriteFilename, unsigned int id, Vec2 startPos
+                   , unsigned int width, unsigned int height);
         unsigned int getID();
-        virtual void update(Engine::Window *window, Engine::InputHandler inputHandler) = 0;
+        void draw();
+        void animate(unsigned int length, unsigned int startFrame);
+        virtual void update(Engine::InputHandler inputHandler) = 0;
     };
 }

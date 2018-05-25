@@ -69,3 +69,14 @@ void Engine::Sprite::animate(int deltaX, int deltaY){
     this->rect.x += deltaX;
     this->rect.y += deltaY;
 }
+
+/*
+  plays an animation given a length (in frames) and what frame is being started on.
+  length of 5 and a start frame of 1 would play from frame 1 to frame until frame 6.
+  spritesheets are like: 0 1 2 3 4 5 ... n
+*/
+void Engine::Sprite::playAnimation(unsigned int length, unsigned int startFrame){
+    for(unsigned int frame = startFrame * this->width; frame < length; frame++){
+        this->animate((frame * this->width), 0);
+    }
+}
