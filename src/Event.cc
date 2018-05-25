@@ -1,4 +1,9 @@
-#include <SDL2/SDL.h>
+#ifdef __MINGW32__
+#include <SDL2.h> // on windows, the header is just SDL2.h
+#else
+#include <SDL2/SDL.h> // on UNIX, the header is in the SDL2 dir.
+#endif
+
 #include "Event.h"
 // Pass function events from the main loop in order to handle keys / quitting
 // return true on 
