@@ -9,3 +9,6 @@ res/      ; resources (assets and contents for scenes: hitagi archives, music, l
 scripts/  ; python and bash scripts used for development
 src/      ; the source code for the core Hitagi engine
 ```
+
+## Building
+[Please see the wiki](https://github.com/EJDF/EJDF/wiki/Building-EJDF)
