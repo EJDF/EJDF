@@ -13,5 +13,6 @@ linux:
 	make all clean
 	$(CC) $(includeDirs) -o $(binlocation) -std=c++1y -lSDL
 win:
-	make all clean
+	make clean
+	mkdir bin/
 	$(CC) $(includeDirs) -o $(binlocation) -std=c++1y -lSDL
