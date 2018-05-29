@@ -11,7 +11,7 @@ namespace Engine{
       Handles the current gamestate and level
       Allows for swapping of state using the `changeState()' function.
       Changing of the state pulls from the vector of preexisting states.
-     */
+    */
     class StateHandler{
         Window *window;
         std::vector<State *> states;

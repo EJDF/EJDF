@@ -19,11 +19,15 @@ namespace Engine{
       abstract class to manage the sprites or other game objects.
     */
     class State{
+
+    public:
+
         // the objects in the current scene.
         std::vector<GameObject *> objs;
-    public:
+        // background tiles.
+        std::vector<Sprite> tiles;
         // abstract state updater.
         // this is the only function required for each state.
-        virtual void update(Window *, InputHandler inputHandler) = 0;
+        virtual void update(Window *window, InputHandler inputHandler) = 0;
     };
 }

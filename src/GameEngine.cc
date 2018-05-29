@@ -34,7 +34,7 @@ int Engine::Window::initWindow(){
 
     // create a window called EJDF of size 800x600.
     this->window = SDL_CreateWindow("EJDF", SDL_WINDOWPOS_UNDEFINED,
-                                    SDL_WINDOWPOS_UNDEFINED, 800, 600,
+                                    SDL_WINDOWPOS_UNDEFINED, 800, 640,
                                     SDL_WINDOW_SHOWN);
 
     // check if window creation worked

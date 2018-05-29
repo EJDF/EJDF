@@ -1,5 +1,5 @@
 #ifdef __MINGW32__
-#include <SDL2.h> // on windows, the header is just SDL2.h
+#include <SDL.h> // on windows, the header is just SDL2.h
 #else
 #include <SDL2/SDL.h> // on UNIX, the header is in the SDL2 dir.
 #endif
