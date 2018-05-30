@@ -29,5 +29,6 @@ namespace Engine{
         // abstract state updater.
         // this is the only function required for each state.
         virtual void update(Window *window, InputHandler inputHandler) = 0;
+        void loadTiles(std::string mapFilename);
     };
 }
