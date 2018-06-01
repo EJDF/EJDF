@@ -19,16 +19,22 @@ namespace Engine{
       each object. Players, enemies, boxes, etc. all implement this class.
      */
     class GameObject{
+    protected:
         Sprite sprite;
         Window *window;
     public:
         const unsigned int id; /* independent ID for current scene.
-                                  This ID is incremented for each GameObject added to a scene.*/
-        GameObject(Window *window, std::string spriteFilename, unsigned int id, Vec2 startPos
-                   , unsigned int width, unsigned int height);
+                                  This ID is incremented for each 
+                                  GameObject added to a scene.*/
+        GameObject() : id(0), window(NULL) { }
+        GameObject(Window *window, std::string spriteFilename,
+                   unsigned int id, Engine::Vec2 startPos,
+                   unsigned int width, unsigned int height);
+        
         unsigned int getID();
         void draw();
         void animate(unsigned int length, unsigned int startFrame);
+
         virtual void update(Engine::InputHandler inputHandler) = 0;
     };
 }

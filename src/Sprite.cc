@@ -36,10 +36,15 @@ Engine::Sprite::Sprite(int x, int y, int w, int h, std::string filename)
 
     destRect.x = this->pos.x;
     destRect.y = this->pos.y;
+
+    // all sprites are showing by default.
+    // showing is a public member variable.
+    this->showing = true;
     
 }
 
 void Engine::Sprite::draw(SDL_Surface *dest){
+    if(!(this->showing)) return; // if the sprite is not showing, don't draw.
     SDL_BlitSurface(this->surface, &this->rect, dest, &destRect);
 }
 

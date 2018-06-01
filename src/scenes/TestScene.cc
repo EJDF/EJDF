@@ -2,7 +2,9 @@
 #include "../Log.h"
 
 TestScene::TestScene(){
+#ifdef __EJDF_DEBUG
     Engine::Log::note("Creating tiles.");
+#endif
     this->loadTiles("res/test.map");
 }
 

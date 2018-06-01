@@ -27,8 +27,8 @@ namespace Engine{
         SDL_Rect destRect;
         int width, height;
         Vec2 pos; // on screen coordinates
-        //Vec2 globalPos; // global in-game position (currently unused)
     public:
+        Sprite() { }
         Sprite(int x, int y, int w, int h, std::string filename);
         Vec2 getPos();
         Vec2 getGlobalPos();
@@ -37,5 +37,6 @@ namespace Engine{
         void despawn();
         void animate(int deltaX, int deltaY);
         void playAnimation(unsigned int length, unsigned int startFrame);
+        bool showing; // should be rendered?
     };
 }
