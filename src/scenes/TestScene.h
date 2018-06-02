@@ -4,6 +4,6 @@
 
 class TestScene : public Engine::State{
 public:
-    TestScene();
-    void update(Engine::Window *window, Engine::InputHandler inputHandler);
+    TestScene(Engine::Window *window);
+    void update(Engine::InputHandler inputHandler);
 };

@@ -8,12 +8,12 @@ namespace Engine{
       an NPC. This base class is derived from and does
       not contain any functionality.
      */
-    class Actor : Engine::GameObject{
+    class Actor : public GameObject{
     protected:
         int health;
     public:
         Actor(){ } // default constructor
-        virtual void move(InputHandler inputHandler) = 0;
+        virtual void move(Vec2 deltaVec) = 0;
         virtual void update(Engine::InputHandler inputHandler) = 0;
     };
 }

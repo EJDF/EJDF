@@ -8,7 +8,7 @@ void Engine::StateHandler::init(Engine::Window *window){
     this->window = window;
 
     // create the initial state
-    TestScene *firstState = new TestScene();
+    TestScene *firstState = new TestScene(window);
     this->addState(firstState);
     this->changeState(0); // go to the first state
 }
@@ -30,6 +30,6 @@ void Engine::StateHandler::addState(Engine::State *newState){
 void Engine::StateHandler::update(Engine::InputHandler inputHandler){
     // make sure that the current state is not null.
     if(this->states[curState] != nullptr){
-        this->states[curState]->update(this->window, inputHandler);
+        this->states[curState]->update(inputHandler);
     }
 }

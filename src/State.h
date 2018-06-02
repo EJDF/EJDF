@@ -26,9 +26,10 @@ namespace Engine{
         std::vector<GameObject *> objs;
         // background tiles.
         std::vector<Sprite> tiles;
+        Window *window;
         // abstract state updater.
         // this is the only function required for each state.
-        virtual void update(Window *window, InputHandler inputHandler) = 0;
+        virtual void update(InputHandler inputHandler) = 0;
         void loadTiles(std::string mapFilename);
     };
 }

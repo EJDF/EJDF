@@ -10,10 +10,12 @@ namespace Engine{
       need a full rewrite of sorts, or other players will simply
       be "NPC"s.
      */
-    class Player : Actor{
+    class Player : public Actor{
     public:
-        Player();
-        void move(InputHandler inputHandler);
-        void update(Engine::InputHandler inputHandler);
+        Player(Window *window, std::string spriteFilename,
+                       unsigned int id, Vec2 startPos,
+                       unsigned int width, unsigned int height);
+        void move(Vec2 delta);
+        void update(InputHandler inputHandler);
     };
 }

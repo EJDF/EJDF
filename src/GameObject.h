@@ -23,7 +23,7 @@ namespace Engine{
         Sprite sprite;
         Window *window;
     public:
-        const unsigned int id; /* independent ID for current scene.
+        unsigned int id; /* independent ID for current scene.
                                   This ID is incremented for each 
                                   GameObject added to a scene.*/
         GameObject() : id(0), window(NULL) { }
