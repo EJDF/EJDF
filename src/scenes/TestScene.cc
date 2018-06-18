@@ -15,7 +15,7 @@ TestScene::TestScene(Engine::Window *window){
     Engine::Log::note("Creating a player.");
 #endif
     this->objs.push_back(new Engine::Player(this->window,
-                                            "res/test.bmp", 0, Engine::Vec2(0,0),
+                                            "res/test.bmp", 0, Engine::Vec2(100,0),
                                             32, 32));
 }
 
@@ -26,6 +26,7 @@ void TestScene::update(Engine::InputHandler inputHandler){
     }
     // draw all of the game objects in the current state.
     for(auto &obj : this->objs){
+        obj->update(inputHandler);
         obj->draw();
     }
 }

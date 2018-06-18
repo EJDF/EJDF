@@ -64,6 +64,20 @@ void Engine::GameEngine::mainLoop(){
     Engine::InputHandler inputHandler; // controls input
     
     while(!quit){
+        if(inputHandler.left){
+            Engine::Log::note("Left");
+        }
+        if(inputHandler.right){
+            Engine::Log::note("Right");
+        }
+        if(inputHandler.up){
+            Engine::Log::note("Up");
+        }
+        if(inputHandler.down) {
+            Engine::Log::note("Down");
+        }
+
+
         initTick = SDL_GetTicks(); // set the start time for the loop iteration
         this->window.resetWindow(); // clear the screen
         

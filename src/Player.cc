@@ -20,6 +20,19 @@ void Engine::Player::update(Engine::InputHandler inputHandler){
     // TODO updates.
     // drawing is handled by sprite.
     if(inputHandler.left){
-        this->move(Vec2(3,3));
+        Engine::Log::note("Move left.");
+        this->move(Vec2(-1,0));
+    }
+    if(inputHandler.right){
+        Engine::Log::note("Move right.");
+        this->move(Vec2(1,0));
+    }
+    if(inputHandler.up){
+        Engine::Log::note("Move up.");
+        this->move(Vec2(0,-1));
+    }
+    if(inputHandler.down) {
+        Engine::Log::note("Move down.");
+        this->move(Vec2(0,1));
     }
 }

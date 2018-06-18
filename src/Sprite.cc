@@ -54,7 +54,11 @@ Engine::Vec2 Engine::Sprite::getPos(){
 
 // vector is how far it's moving
 void Engine::Sprite::move(Engine::Vec2 deltaVec){
-    this->pos + deltaVec;
+    this->pos = this->pos + deltaVec;
+    destRect.x = this->pos.x;
+    destRect.y = this->pos.y;
+    Engine::Log::note("Passed vector:");
+    Engine::Log::note(std::to_string(deltaVec.x));
 }
 
 void Engine::Sprite::despawn(){
