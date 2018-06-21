@@ -10,23 +10,23 @@ Engine::Player::Player(Engine::Window *window, std::string spriteFilename,
     this->id = id;
 }
 
-void Engine::Player::move(Engine::Vec2 delta){
+void Engine::Player::move(Engine::Vec2f deltaVec){
     // add the vector
-    this->sprite.move(delta);
+    this->sprite.move(deltaVec);
 }
 
 
 void Engine::Player::update(Engine::InputHandler inputHandler){
-    if(inputHandler.left){
-        this->move(Vec2(-1,0));
+    Engine::Vec2f deltaVec;
+    if(inputHandler.left) {
+        deltaVec.x = -1;
+    } else if(inputHandler.right) {
+        deltaVec.x = 1;
     }
-    if(inputHandler.right){
-        this->move(Vec2(1,0));
+    if(inputHandler.up) {
+        deltaVec.y = -1;
+    } else if(inputHandler.down) {
+        deltaVec.y = 1;
     }
-    if(inputHandler.up){
-        this->move(Vec2(0,-1));
-    }
-    if(inputHandler.down) {
-        this->move(Vec2(0,1));
-    }
+    this->move(deltaVec);
 }

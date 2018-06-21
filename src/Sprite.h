@@ -6,6 +6,7 @@
 #endif
 #include "Log.h"
 #include "Vec2.h"
+#include "Input.h"
 
 namespace Engine{
     /*
@@ -26,13 +27,17 @@ namespace Engine{
         SDL_Rect rect;
         SDL_Rect destRect;
         int width, height;
-        Vec2 pos; // on screen coordinates
+        Vec2f pos; // on screen coordinates
+        Vec2f velocity; // movement velocity
+        double accelerationRate;
+        double decelerationRate;
+        double maxSpeed; // the maximum movement speed of the spite
     public:
         Sprite() { }
         Sprite(int x, int y, int w, int h, std::string filename);
-        Vec2 getPos();
+        Vec2f getPos();
         Vec2 getGlobalPos();
-        void move(Vec2 deltaVec);
+        void move(Vec2f deltaVec);
         void draw(SDL_Surface *dest);
         void despawn();
         void animate(int deltaX, int deltaY);

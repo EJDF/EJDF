@@ -40,6 +40,11 @@ Engine::Sprite::Sprite(int x, int y, int w, int h, std::string filename)
     // all sprites are showing by default.
     // showing is a public member variable.
     this->showing = true;
+
+    // movement physics constants
+    this->accelerationRate = .03;
+    this->decelerationRate = 0.1;
+    this->maxSpeed = 4.0;
     
 }
 
@@ -48,13 +53,34 @@ void Engine::Sprite::draw(SDL_Surface *dest){
     SDL_BlitSurface(this->surface, &this->rect, dest, &destRect);
 }
 
-Engine::Vec2 Engine::Sprite::getPos(){
+Engine::Vec2f Engine::Sprite::getPos(){
     return this->pos;
 }
 
 // vector is how far it's moving
-void Engine::Sprite::move(Engine::Vec2 deltaVec){
-    this->pos = this->pos + deltaVec;
+void Engine::Sprite::move(Engine::Vec2f deltaVec){
+
+    // horizontal movement.
+    if(deltaVec.x == 1) this->velocity.x += this->accelerationRate;
+    else if(deltaVec.x == -1) this->velocity.x -= this->accelerationRate;
+    else this->velocity.x = this->velocity.x * this->decelerationRate;
+
+    // vertical movement
+    if(deltaVec.y == 1) this->velocity.y += this->accelerationRate;
+    else if(deltaVec.y == -1) this->velocity.y -= this->accelerationRate;
+    else this->velocity.y = this->velocity.y * this->decelerationRate;
+    
+    // ensure that the sprite does not move too fast
+    // clamp the speed.
+    // a^2 + b^2 = c^2 : pyguy's theory
+    double speed = sqrt((this->velocity.x * this->velocity.x) +
+                        (this->velocity.y * this->velocity.y));
+    if(speed > this->maxSpeed)
+        // scalar to clamp it down
+        this->velocity = this->velocity * (this->maxSpeed / speed);
+
+    // update the position.
+    this->pos = this->pos + this->velocity;
     destRect.x = this->pos.x;
     destRect.y = this->pos.y;
 }

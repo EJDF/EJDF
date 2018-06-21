@@ -13,7 +13,7 @@ namespace Engine{
         int health;
     public:
         Actor(){ } // default constructor
-        virtual void move(Vec2 deltaVec) = 0;
+        virtual void move(Vec2f) = 0;
         virtual void update(Engine::InputHandler inputHandler) = 0;
     };
 }

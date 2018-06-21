@@ -44,7 +44,7 @@ namespace Engine{
         GameEngine();
         ~GameEngine();
         int initWindow();
-        void update(Engine::InputHandler inputHandler);
+        inline void update(Engine::InputHandler inputHandler);
         void mainLoop();
     };
 }

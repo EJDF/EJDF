@@ -50,7 +50,7 @@ int Engine::Window::initWindow(){
 }
 
 // update the current state along with the SDL window.
-void Engine::GameEngine::update(Engine::InputHandler inputHandler){
+inline void Engine::GameEngine::update(Engine::InputHandler inputHandler){
     this->handler->update(inputHandler);
     SDL_UpdateWindowSurface(this->window.getWindow());
 

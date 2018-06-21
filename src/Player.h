@@ -15,7 +15,7 @@ namespace Engine{
         Player(Window *window, std::string spriteFilename,
                        unsigned int id, Vec2 startPos,
                        unsigned int width, unsigned int height);
-        void move(Vec2 delta);
+        void move(Vec2f deltaVec);
         void update(InputHandler inputHandler);
     };
 }
