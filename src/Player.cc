@@ -19,14 +19,16 @@ void Engine::Player::move(Engine::Vec2f deltaVec){
 void Engine::Player::update(Engine::InputHandler inputHandler){
     Engine::Vec2f deltaVec;
     if(inputHandler.left) {
-        deltaVec.x = -1;
-    } else if(inputHandler.right) {
-        deltaVec.x = 1;
+        deltaVec.x += -1;
+    }
+    if(inputHandler.right) {
+        deltaVec.x += 1;
     }
     if(inputHandler.up) {
-        deltaVec.y = -1;
-    } else if(inputHandler.down) {
-        deltaVec.y = 1;
+        deltaVec.y += -1;
+    }
+    if(inputHandler.down) {
+        deltaVec.y += 1;
     }
     this->move(deltaVec);
 }

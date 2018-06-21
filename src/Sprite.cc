@@ -42,8 +42,8 @@ Engine::Sprite::Sprite(int x, int y, int w, int h, std::string filename)
     this->showing = true;
 
     // movement physics constants
-    this->accelerationRate = .03;
-    this->decelerationRate = 0.1;
+    this->accelerationRate = 0.2;
+    this->decelerationRate = 0.2;
     this->maxSpeed = 4.0;
     
 }
@@ -63,12 +63,20 @@ void Engine::Sprite::move(Engine::Vec2f deltaVec){
     // horizontal movement.
     if(deltaVec.x == 1) this->velocity.x += this->accelerationRate;
     else if(deltaVec.x == -1) this->velocity.x -= this->accelerationRate;
-    else this->velocity.x = this->velocity.x * this->decelerationRate;
+    else {
+        if(std::fabs(this->velocity.x) < this->decelerationRate) this->velocity.x = 0;
+        else if(this->velocity.x > 0) this->velocity.x -= this->decelerationRate;
+        else if (this->velocity.x < 0) this->velocity.x += this->decelerationRate;
+    }
 
     // vertical movement
     if(deltaVec.y == 1) this->velocity.y += this->accelerationRate;
     else if(deltaVec.y == -1) this->velocity.y -= this->accelerationRate;
-    else this->velocity.y = this->velocity.y * this->decelerationRate;
+    else {
+        if(std::fabs(this->velocity.y) < this->decelerationRate) this->velocity.y = 0;
+        else if(this->velocity.y > 0) this->velocity.y -= this->decelerationRate;
+        else if(this->velocity.y < 0) this->velocity.y += this->decelerationRate;
+    }
     
     // ensure that the sprite does not move too fast
     // clamp the speed.
